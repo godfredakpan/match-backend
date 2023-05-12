@@ -96,9 +96,9 @@ export default function Login() {
           <button onClick={handleSubmit}> {loading ? "Loading..." : "Log In"}</button>
           {/* <button onClick={handleSubmit} >Log In</button> */}
           <br></br>
-          <span>
+          {/* <span>
             Don't have an account ? <Link to="/register">Create One.</Link>
-          </span>
+          </span> */}
           </div>
         </div>
       </FormContainer>

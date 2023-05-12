@@ -91,6 +91,8 @@ const Dashboard = () => {
         )
     }
 
+    console.log('currentChat', currentChat);
+
     return (
         <>
             <div className="light white-content">
@@ -137,6 +139,10 @@ const Dashboard = () => {
 
                                                 <p className="description">
                                                     <b>Email:</b>{currentChat?.email}
+                                                </p>
+
+                                                <p className="description">
+                                                    <b>Email:</b>{currentChat?.gender}
                                                 </p>
 
                                             </div>

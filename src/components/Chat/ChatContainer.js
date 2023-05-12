@@ -120,6 +120,7 @@ const Container = styled.div`
   // grid-template-rows: 0% 100% 10%;
   gap: 0.1rem;
   overflow: hidden;
+  min-height: 100vh;
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     grid-template-rows: 15% 70% 15%;
   }

@@ -25,7 +25,8 @@ export default function Contacts({moderators, conversation, contacts, changeChat
 
     const contact = getContact(id);
 
-    const moderator = getModerator(receiverId)
+    const moderator = getModerator(receiverId);
+
     localStorage.setItem('current-moderator', JSON.stringify(moderator));
 
     setCurrentSelected(index);
