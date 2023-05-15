@@ -9,8 +9,6 @@ const NavBar = () => {
         window.location.href = "/login";
     }
 
-
-
     return (
         <>
             <nav class="navbar navbar-expand-lg navbar-sticky">
@@ -23,9 +21,9 @@ const NavBar = () => {
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="{{ route('index') }}">
+                        <a class="navbar-brand" href="/">
                             <img class="img-responsive" style={{width: '10%'}}
-                                src="" alt="" />Love Match</a>
+                                src="" alt="" />Chat Home Base</a>
                             
 
                     </div>

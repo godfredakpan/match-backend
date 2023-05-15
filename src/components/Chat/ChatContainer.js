@@ -75,7 +75,7 @@ export default function ChatContainer({ currentChat, socket }) {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // console.log('messages', messages)
+  console.log('messages', messages)
 
   return (
     <Container>

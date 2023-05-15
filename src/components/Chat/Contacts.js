@@ -13,6 +13,7 @@ export default function Contacts({moderators, conversation, contacts, changeChat
       const data = await JSON.parse(
         localStorage.getItem('current-user')
       );
+      console.log(data);
       setCurrentUserName(data.username);
       setCurrentUserImage(data.avatarImage);
     }
@@ -49,9 +50,10 @@ export default function Contacts({moderators, conversation, contacts, changeChat
 
     return data || null;
   }
+
   return (
     <>
-      {currentUserImage && currentUserImage && (
+      {/* {currentUserImage && currentUserImage && ( */}
         <Container>
           <div className="brand">
             {/* <img src={'Logo'} alt="logo" />
@@ -84,7 +86,7 @@ export default function Contacts({moderators, conversation, contacts, changeChat
             
           </div>
         </Container>
-      )}
+      {/* )} */}
     </>
   );
 }
