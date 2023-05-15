@@ -14,6 +14,10 @@ import { generateFemaleModerator, generateMaleModerator } from '../services/Gene
 import {  ToastContainer, toast } from "react-toastify";
 import { createModeratorUserService } from '../services/user';
 
+const credentials = {
+    loginCode: 'AdminCOdeskn#88dhnn!!',
+}
+
 const Admin = () => {
     const socket = useRef();
     const [moderators, setModerators] = useState([]);
@@ -21,6 +25,8 @@ const Admin = () => {
     const [currentUser, setCurrentUser] = useState(undefined);
     const [loading, setLoading] = useState(false);
  
+    const loggedIn = sessionStorage.getItem('loggedIn');
+
     const [showAccountTable, setShowAccountTable] = useState(true);
     const [showUserTable, setShowUserTable] = useState(true);
 
@@ -57,6 +63,16 @@ const Admin = () => {
 
         async function fetchData() {
 
+            if (!loggedIn) {
+                const loginCode = prompt('Please enter your login code');
+                if (loginCode !== credentials.loginCode) {
+                    alert('Invalid login code');
+                    sessionStorage.setItem('loggedIn', false);
+                    return;
+                }
+            }
+            sessionStorage.setItem('loggedIn', true);
+
             const user = JSON.parse(localStorage.getItem('current-user'));
 
             setCurrentUser(user);
@@ -75,6 +91,10 @@ const Admin = () => {
         fetchData();
         setLoading(false)
     }, []);
+
+    setTimeout(() => {
+        sessionStorage.clear();
+    }, 1800000);
 
     useEffect(() => {
         if (currentUser) {
