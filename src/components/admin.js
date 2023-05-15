@@ -223,7 +223,7 @@ const Admin = () => {
                                 <div className="col-md-10">
                                     <div className="card" style={{ backgroundColor: '#fff' }}>
                                     {showAccountTable &&
-                                        <><div className="card-body">
+                                        <><div className="card-body table-responsive">
                                                 <div className="card-title">
                                                     <h3>Accounts</h3>
                                                 </div>
@@ -277,7 +277,7 @@ const Admin = () => {
                                     {showUserTable && 
                                     <div className="card" style={{ backgroundColor: '#fff' }}>
 
-                                        <div className="card-body">
+                                        <div className="card-body table-responsive">
                                                 <div className="card-title">
                                                     <h3>Users</h3>
                                                 </div>

@@ -36,7 +36,7 @@ const NavBar = () => {
                     </button>
                     <div class="collapse navbar-collapse" id="navigation">
                         <ul class="navbar-nav ml-auto">
-                            <li class="dropdown nav-item">
+                            {/* <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <div class=" d-none d-lg-block d-xl-block"></div>
                                     <i class="tim-icons"></i>
@@ -44,7 +44,7 @@ const NavBar = () => {
                                         Notifications
                                     </p>
                                 </a>
-                            </li>
+                            </li> */}
 
                             <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -52,16 +52,16 @@ const NavBar = () => {
                                     Admin
                                     </div>
                                     <b class="caret d-none d-lg-block d-xl-block"></b>
-                                    <p onClick={() => logout()} class="d-lg-none">
-                                        Log out
+                                    <p  class="d-lg-none">
+                                        ::::
                                     </p>
                                 </a>
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li class="nav-link"><a onClick={() => logout()} href="#"
-                                        class="nav-item dropdown-item">Logout</a></li>
+                                        class="nav-item dropdown-item text-success">Logout</a></li>
 
-                                    <li class="nav-link"><a onClick={() => window.location.href = "/admin"} href="#"
-                                    class="nav-item dropdown-item">Admin</a></li>
+                                    <li class="nav-link text-success"><a onClick={() => window.location.href = "/admin"} href="#"
+                                    class="nav-item dropdown-item text-success">Admin</a></li>
                                 </ul>
                             </li>
                             <li class="separator d-lg-none"></li>
