@@ -2,28 +2,28 @@ import React, { useState } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import { Button } from 'react-bootstrap';
-import { saveAs } from 'file-saver';
-import * as XLSX from 'xlsx';
+// import { Button } from 'react-bootstrap';
+// import { saveAs } from 'file-saver';
+// import * as XLSX from 'xlsx';
 import getAllUsers from '../fauna/getUsers';
 
 
 const credentials = {
-    loginCode: 'pUrpLeQWERTY20',
+    loginCode: 'AdminCOdeskn#88dhnn!!',
 }
 
 const columns = [
     {
-        dataField: 'fname',
-        text: 'First Name',
+        dataField: 'name',
+        text: 'Name',
     },
     {
-        dataField: 'mname',
-        text: 'Middle Name',
+        dataField: 'username',
+        text: 'Username',
     },
     {
-        dataField: 'lname',
-        text: 'Last Name',
+        dataField: 'email',
+        text: 'Email',
     },
     {
         dataField: 'gender',
@@ -32,30 +32,6 @@ const columns = [
     {
         dataField: 'dob',
         text: 'Date of Birth',
-    },
-    {
-        dataField: 'email',
-        text: 'Email',
-    },
-    {
-        dataField: 'phone',
-        text: 'Phone',
-    },
-    {
-        dataField: 'address',
-        text: 'Address',
-    },
-    {
-        dataField: 'bank_name',
-        text: 'Bank Name',
-    },
-    {
-        dataField: 'account_number',
-        text: 'Acct Number',
-    },
-    {
-        dataField: 'account_name',
-        text: 'Account Name',
     },
 
 ];
@@ -103,31 +79,31 @@ function Users() {
     };
 
 
-    const handleExportClick = () => {
-        const selectedData = selectedRows.length > 0 ? selectedRows : users;
+    // const handleExportClick = () => {
+    //     const selectedData = selectedRows.length > 0 ? selectedRows : users;
 
-        const sheetData = [
-            ['First Name', 'Middle Name', 'Last Name', 'Gender', 'Date of Birth', 'Email', 'Phone', 'Address', 'Bank Name', 'Account Number', 'Account Name'],
-            ...selectedData.map((d) => [d.fname, d.mname, d.lname, d.gender, d.dob, d.email, d.phone, d.address, d.bank_name, d.account_number, d.account_name]),
-        ];
+    //     const sheetData = [
+    //         ['First Name', 'Middle Name', 'Last Name', 'Gender', 'Date of Birth', 'Email', 'Phone', 'Address', 'Bank Name', 'Account Number', 'Account Name'],
+    //         ...selectedData.map((d) => [d.fname, d.mname, d.lname, d.gender, d.dob, d.email, d.phone, d.address, d.bank_name, d.account_number, d.account_name]),
+    //     ];
 
-        const sheetName = 'Purple Data';
+    //     const sheetName = 'Purple Data';
 
-        const workbook = XLSX.utils.book_new();
-        const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+    //     const workbook = XLSX.utils.book_new();
+    //     const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
 
-        XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+    //     XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
 
-        const excelBuffer = XLSX.write(workbook, {
-            bookType: 'xlsx',
-            type: 'array',
-        });
+    //     const excelBuffer = XLSX.write(workbook, {
+    //         bookType: 'xlsx',
+    //         type: 'array',
+    //     });
 
-        saveAs(
-            new Blob([excelBuffer], { type: 'application/octet-stream' }),
-            `${sheetName}.xlsx`
-        );
-    };
+    //     saveAs(
+    //         new Blob([excelBuffer], { type: 'application/octet-stream' }),
+    //         `${sheetName}.xlsx`
+    //     );
+    // };
 
 
     setTimeout(() => {
@@ -147,7 +123,7 @@ function Users() {
                     <div className="col-md-12">
                         {users.length === 0 && <h4>Loading...</h4>}
                         {users.length > 0 && <h4>Entries</h4>}
-                        <button className='btn-success btn btn-sm' style={{ marginBottom: '20px' }} onClick={handleExportClick}>Export to Excel</button>
+                        {/* <button className='btn-success btn btn-sm' style={{ marginBottom: '20px' }} onClick={handleExportClick}>Export to Excel</button> */}
                         <BootstrapTable
                             keyField="id"
                             data={users}

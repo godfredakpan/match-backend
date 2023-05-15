@@ -9,6 +9,8 @@ const NavBar = () => {
         window.location.href = "/login";
     }
 
+
+
     return (
         <>
             <nav class="navbar navbar-expand-lg navbar-sticky">
@@ -59,6 +61,9 @@ const NavBar = () => {
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li class="nav-link"><a onClick={() => logout()} href="#"
                                         class="nav-item dropdown-item">Logout</a></li>
+
+                                    <li class="nav-link"><a onClick={() => window.location.href = "/admin"} href="#"
+                                    class="nav-item dropdown-item">Admin</a></li>
                                 </ul>
                             </li>
                             <li class="separator d-lg-none"></li>

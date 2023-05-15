@@ -91,8 +91,6 @@ const Dashboard = () => {
         )
     }
 
-    console.log('currentChat', currentChat);
-
     return (
         <>
             <div className="light white-content">

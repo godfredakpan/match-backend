@@ -83,18 +83,6 @@ export default function Contacts({moderators, conversation, contacts, changeChat
             })}
             
           </div>
-          {/* <div className="current-user">
-            <div className="avatar">
-              <img
-                src={`${currentUserImage}`}
-                alt="avatar"
-                className="avatar"
-              />
-            </div>
-            <div className="username">
-              <h4>{currentUserName}</h4>
-            </div>
-          </div> */}
         </Container>
       )}
     </>

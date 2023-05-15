@@ -4,6 +4,7 @@ import 'material-react-toastify/dist/ReactToastify.css';
 import Dashboard from './components/dashboard';
 // import { ToastContainer } from 'material-react-toastify';
 import Login from "./components/Login";
+import Admin from './components/admin';
 
 const App = () => {
   return (
@@ -14,6 +15,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
 
             <Route path="/" element={<Dashboard/>} />
+
+            <Route path="admin" element={<Admin/>} />
 						
             </Routes>
 				</Router>
