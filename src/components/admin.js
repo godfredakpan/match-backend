@@ -235,6 +235,7 @@ const Admin = () => {
                                                             <th scope="col">#</th>
                                                             <th scope="col">Name</th>
                                                             <th scope="col">Gender</th>
+                                                            <th scope="col">Region</th>
                                                             <th scope="col">Email</th>
                                                             <th scope="col">Image</th>
                                                         </tr>
@@ -243,6 +244,7 @@ const Admin = () => {
                                                         {currentModerators.map((moderator, index) => <tr>
                                                             <th scope="row">{index}</th>
                                                             <td>{moderator.name}</td>
+                                                            <td>{moderator.region}</td>
                                                             <td>{moderator.gender}</td>
                                                             <td>{moderator.email}</td>
                                                             <td><img alt={moderator.name} src={moderator.avatarImage} style={{ width: '50px' }} /></td>
