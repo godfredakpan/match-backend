@@ -118,6 +118,7 @@ const APPEARANCE_OPTIONS = [
 ];
 
 const getRandomAppearance = () => {
+
   const randomIndex = Math.floor(Math.random() * APPEARANCE_OPTIONS.length);
 
   return APPEARANCE_OPTIONS[randomIndex];
@@ -202,7 +203,7 @@ async function generateRandomFemaleProfile() {
 
   const image = await axios.get('https://api.unsplash.com/photos/random/?query=female&orientation=portrait&client_id=wgGhhm_ZZbGKSe8-JrfuXXEhMsRXk6lykIOwLMUE13M');
 
-  const profilePictureUrl = image.data.urls.regular;
+  const profilePictureUrl = image.data.urls.small;
 
 
   // Return an object containing the profile information
