@@ -239,7 +239,7 @@ async function generateRandomMaleProfile() {
 
   const image = await axios.get('https://api.unsplash.com/photos/random/?query=male&orientation=portrait&client_id=wgGhhm_ZZbGKSe8-JrfuXXEhMsRXk6lykIOwLMUE13M');
 
-  const profilePictureUrl = image.data.urls.regular;
+  const profilePictureUrl = image.data.urls.small;
 
   return { name, age, relationship, gender, height, password, about, avatarImage:profilePictureUrl, username, email, region, appearance };
 
