@@ -1,5 +1,5 @@
 import request from 'umi-request';
-import { loginRoute, createFavoriteRoute, registerRoute, allModeratorsRoute, createModeratorsRoute, createModeratorUsersRoute, getAllModeratorUsersRoute } from '../utils/APIRoutes.js';
+import { loginRoute, createFavoriteRoute, registerRoute, allModeratorsRoute, createModeratorsRoute, createModeratorUsersRoute, getAllModeratorUsersRoute, allUsersRoute, updateAccountImage } from '../utils/APIRoutes.js';
 
 export async function loginUser(credentials) {
     return request(`${loginRoute}`, {
@@ -22,6 +22,29 @@ export async function getAllUsers() {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': '*',
     },
+  });
+}
+
+
+export async function getAllLovers() {
+  return request(`${allUsersRoute}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+    },
+  });
+}
+
+
+export async function updateAccountServiceImage(body) {
+  return request(`${updateAccountImage}`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
   });
 }
 
