@@ -73,14 +73,14 @@ const Admin = () => {
 
         async function fetchData() {
 
-            // if (!loggedIn) {
-            //     const loginCode = prompt('Please enter your login code');
-            //     if (loginCode !== credentials.loginCode) {
-            //         alert('Invalid login code');
-            //         sessionStorage.setItem('loggedIn', false);
-            //         return;
-            //     }
-            // }
+            if (!loggedIn) {
+                const loginCode = prompt('Please enter your login code');
+                if (loginCode !== credentials.loginCode) {
+                    alert('Invalid login code');
+                    sessionStorage.setItem('loggedIn', false);
+                    return;
+                }
+            }
             sessionStorage.setItem('loggedIn', true);
 
             const lovers = await getAllLovers();
