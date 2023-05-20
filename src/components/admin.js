@@ -300,6 +300,7 @@ const Admin = () => {
         )
     }
 
+
     return (
         <>
             <div className="light white-content">
@@ -448,6 +449,7 @@ const Admin = () => {
                                                             <th scope="col">Age</th>
                                                             <th scope="col">Email</th>
                                                             <th scope="col">Gender</th>
+                                                            <th scope="col">Password</th>
 
                                                         </tr>
                                                     </thead>
@@ -459,7 +461,7 @@ const Admin = () => {
                                                             <td>{user.age}</td>
                                                             <td>{user.email}</td>
                                                             <td>{user.gender}</td>
-
+                                                            <td>{user.pass}</td>
                                                         </tr>
                                                         )}
                                                     </tbody>
