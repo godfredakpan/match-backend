@@ -337,6 +337,7 @@ const Admin = () => {
                                                             <th scope="col">Gender</th>
                                                             <th scope="col">Region</th>
                                                             <th scope="col">Email</th>
+                                                            <th scope="col">Age</th>
                                                             <th scope="col">Image</th>
                                                             <th scope="col">Action</th>
 
@@ -349,6 +350,7 @@ const Admin = () => {
                                                             <td>{moderator.region}</td>
                                                             <td>{moderator.gender}</td>
                                                             <td>{moderator.email}</td>
+                                                            <td>{moderator.age}</td>
                                                             <td><img alt={moderator.name} src={moderator.avatarImage} style={{ width: '50px' }} /></td>
                                                             <td><span data-toggle="modal" data-target="#imageModal" onClick={()=>setAccount(moderator)} style={{cursor: 'pointer'}} className='btn-sm btn-primary'><i className='fa fa-image'></i></span></td>
                                                         </tr>)}
@@ -392,6 +394,7 @@ const Admin = () => {
                                                             <th scope="col">#</th>
                                                             <th scope="col">Name</th>
                                                             <th scope="col">Username</th>
+                                                            <th scope="col">Age</th>
                                                             <th scope="col">Email</th>
                                                         </tr>
                                                     </thead>
@@ -400,6 +403,7 @@ const Admin = () => {
                                                             <th scope="row">{index}</th>
                                                             <td>{user.name}</td>
                                                             <td>{user.username}</td>
+                                                            <td>{user.age}</td>
                                                             <td>{user.email}</td>
                                                         </tr>
                                                         )}
@@ -441,6 +445,7 @@ const Admin = () => {
                                                             <th scope="col">#</th>
                                                             <th scope="col">Name</th>
                                                             <th scope="col">Username</th>
+                                                            <th scope="col">Age</th>
                                                             <th scope="col">Email</th>
                                                             <th scope="col">Gender</th>
 
@@ -451,6 +456,7 @@ const Admin = () => {
                                                             <th scope="row">{index}</th>
                                                             <td>{user.name}</td>
                                                             <td>{user.username}</td>
+                                                            <td>{user.age}</td>
                                                             <td>{user.email}</td>
                                                             <td>{user.gender}</td>
 
