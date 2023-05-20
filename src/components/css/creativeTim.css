@@ -20488,3 +20488,12 @@
   border-radius: 5px;
 
 }
+.pagination-scroll {
+        margin: 10px, 10px !important;
+        padding: 10px !important;
+        /* background-color: #08c708; */
+        width: 100%;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+}

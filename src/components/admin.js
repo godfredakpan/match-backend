@@ -73,14 +73,14 @@ const Admin = () => {
 
         async function fetchData() {
 
-            if (!loggedIn) {
-                const loginCode = prompt('Please enter your login code');
-                if (loginCode !== credentials.loginCode) {
-                    alert('Invalid login code');
-                    sessionStorage.setItem('loggedIn', false);
-                    return;
-                }
-            }
+            // if (!loggedIn) {
+            //     const loginCode = prompt('Please enter your login code');
+            //     if (loginCode !== credentials.loginCode) {
+            //         alert('Invalid login code');
+            //         sessionStorage.setItem('loggedIn', false);
+            //         return;
+            //     }
+            // }
             sessionStorage.setItem('loggedIn', true);
 
             const lovers = await getAllLovers();
@@ -355,9 +355,9 @@ const Admin = () => {
 
                                                     </tbody>
                                                 </table>
-                                                <div className=''>
+                                                <div className='pagination-scroll'>
                                                     <nav aria-label="Page navigation example">
-                                                        <ul className="pagination justify-content-end">
+                                                        <ul className="pagination ">
                                                             <li className="page-item" style={{ marginRight: '5px' }}>
                                                                 <button className="btn btn-sm btn-primary" onClick={prevPage} disabled={currentPage === 1 ? true : false}><i className="fa fa-angle-double-left"></i></button>
                                                             </li>
@@ -407,9 +407,9 @@ const Admin = () => {
                                                 </table>
 
                                             </div>
-                                            <div className=''>
+                                            <div className='pagination-scroll'>
                                                     <nav aria-label="Page navigation example">
-                                                        <ul className="pagination justify-content-end">
+                                                        <ul className="pagination">
                                                             <li className="page-item" style={{ marginRight: '5px' }}>
                                                                 <button className="btn btn-sm btn-primary" onClick={prevPageUser} disabled={currentUserPage === 1 ? true : false}><i className="fa fa-angle-double-left"></i></button>
                                                             </li>
@@ -460,9 +460,9 @@ const Admin = () => {
                                                 </table>
 
                                             </div>
-                                            <div className=''>
+                                            <div className='pagination-scroll'>
                                                     <nav aria-label="Page navigation example">
-                                                        <ul className="pagination justify-content-end">
+                                                        <ul className="pagination">
                                                             <li className="page-item" style={{ marginRight: '5px' }}>
                                                                 <button className="btn btn-sm btn-primary" onClick={prevPageLover} disabled={currentLoverPage === 1 ? true : false}><i className="fa fa-angle-double-left"></i></button>
                                                             </li>
