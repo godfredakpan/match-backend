@@ -20488,6 +20488,13 @@
   border-radius: 5px;
 
 }
+
+.loader{
+  color:#fff;
+  font-size: 20px;
+  margin-top: 10px;
+  text-align: center;
+}
 .pagination-scroll {
         margin: 10px, 10px !important;
         padding: 10px !important;
