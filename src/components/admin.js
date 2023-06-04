@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import axios from "axios";
 import { io } from "socket.io-client";
-import { allModeratorsRoute, allPaymentsRoute, getAllModeratorUsersRoute, host } from "../utils/APIRoutes";
+import { allModeratorsRoute, allPaymentsRoute, createFavoriteRoute, getAllModeratorUsersRoute, host, sendMessageRoute } from "../utils/APIRoutes";
 
 import 'material-react-toastify/dist/ReactToastify.css';
 import NavBar from './layouts/navbar';
@@ -32,6 +32,8 @@ const Admin = () => {
     const [image, setImage] = useState(null);
     const [uploadLoading, setUploadLoading] = useState(false);
     const [account, setAccount] = useState({});
+    const [selectedUser, updateSelectedUser] = useState({});
+    const [selectedLover, updateSelectedLover] = useState({});
 
     const loggedIn = sessionStorage.getItem('loggedIn');
 
@@ -57,6 +59,7 @@ const Admin = () => {
         username: '',
         email: '',
         password: '',
+        message: '',
     });
 
     const updateForm = (e) => {
@@ -109,12 +112,18 @@ const Admin = () => {
 
             setPayments(payments.data);
 
+            const selectedChat = localStorage.getItem('selectedChat');
+
+            if (selectedChat) {
+                updateSelectedUser(JSON.parse(selectedChat));
+            }
+
             setLoading(false)
 
         }
 
         fetchData();
-        
+
     }, []);
 
     setTimeout(() => {
@@ -320,11 +329,48 @@ const Admin = () => {
     }, [])
 
 
+    const addUserToLocalStorage = (user) => {
+        localStorage.setItem('selectedChat', JSON.stringify(user));
+        updateSelectedUser(user);
+        toast.success(`You are now talking to lovers with ${user.name}`);
+    }
+
+    const sendMessage = async (e) => {
+        if (!formState.message) {
+            toast.error('Please enter a message');
+            return;
+        }
+        const selectedChat = JSON.parse(localStorage.getItem('selectedChat'));
+
+        await axios.post(createFavoriteRoute, {
+            ...selectedChat,
+            id: selectedChat._id,
+            user_id: selectedLover._id,
+        });
+
+        const message = formState.message;
+        const data = await axios.post(sendMessageRoute, {
+            from: selectedChat._id,
+            to: selectedLover._id,
+            message: message,
+          });
+
+          console.log(data);
+
+        if (data) {
+            toast.success('Message sent successfully');
+        } else {
+            toast.error('Error, try again');
+        }
+    }
+
+
+
     if (loading) {
         return (
             <div className="container-fluid col-md-12 align-center">
-            <div style={{width: '100%', height: '100%', marginTop: '100px'}} className="loader">Loading.....</div>
-        </div>
+                <div style={{ width: '100%', height: '100%', marginTop: '100px' }} className="loader">Loading.....</div>
+            </div>
         )
     }
 
@@ -381,7 +427,10 @@ const Admin = () => {
                                                             <td>{moderator.email}</td>
                                                             <td>{moderator.age}</td>
                                                             <td><img alt={moderator.name} src={moderator.avatarImage} style={{ width: '50px' }} /></td>
-                                                            <td><span data-toggle="modal" data-target="#imageModal" onClick={() => setAccount(moderator)} style={{ cursor: 'pointer' }} className='btn-sm btn-primary'><i className='fa fa-image'></i></span></td>
+                                                            <td><span data-toggle="modal" data-target="#imageModal" onClick={() => setAccount(moderator)} style={{ cursor: 'pointer' }} className='btn-sm btn-primary'><i className='fa fa-image'></i></span>
+
+                                                                <span onClick={() => addUserToLocalStorage(moderator)} style={{ cursor: 'pointer', marginLeft: 10 }} className='btn-sm btn-primary'><i className='fa fa-heart'></i></span>
+                                                            </td>
                                                         </tr>)}
 
                                                     </tbody>
@@ -478,6 +527,7 @@ const Admin = () => {
                                                             <th scope="col">Email</th>
                                                             <th scope="col">Gender</th>
                                                             <th scope="col">Password</th>
+                                                            <th scope="col">Action</th>
 
                                                         </tr>
                                                     </thead>
@@ -490,6 +540,8 @@ const Admin = () => {
                                                             <td>{user.email}</td>
                                                             <td>{user.gender}</td>
                                                             <td>{user.pass}</td>
+                                                            <td><span data-toggle="modal" data-target="#chatModal" onClick={() => updateSelectedLover(user)} style={{ cursor: 'pointer' }} className='btn-sm btn-primary'><i className='fa fa-envelope'></i></span>
+                                                            </td>
                                                         </tr>
                                                         )}
                                                     </tbody>
@@ -571,6 +623,11 @@ const Admin = () => {
                                 <div className="col-md-2">
                                     <div className="card" style={{ backgroundColor: '#080420' }}>
                                         <div className="card-body">
+                                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+                                                <p style={{ color: 'white' }}>Current user</p>
+                                                <p style={{ color: 'white' }}>{selectedUser.name}</p>
+                                                <img src={selectedUser.avatarImage} alt="" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
+                                            </div>
                                             <button onClick={() => generateMale()} class="btn btn-primary btn-sm" data-searchbutton="">Generate Male Account</button>
                                             <button onClick={() => generateFeMale()} class="btn btn-info btn-sm" data-searchbutton="">Generate Female Account</button>
                                             <button data-toggle="modal" data-target="#exampleModal" class="btn btn-warning btn-sm" >Create Moderator</button>
@@ -675,6 +732,33 @@ const Admin = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className="modal fade" id="chatModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog" role="document" style={{ width: '100%' }}>
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">Chat using {selectedUser.name}</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div className="modal-body">
+                                    <div className="row clearfix">
+                                        <div className="col-md-12">
+                                            <div className="form-group">
+                                                <label>Message {selectedLover.name}</label>
+                                                <textarea onChange={updateForm} className='form-control' name='message' value={formState?.message} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button onClick={() => sendMessage()} className="btn btn-primary">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </>
