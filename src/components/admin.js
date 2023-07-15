@@ -43,16 +43,17 @@ const Admin = () => {
     const [showPaymentTable, setShowPaymentTable] = useState(true);
 
     const [currentPage, setCurrentPage] = useState(1);
+    const [currentLoverPage, setCurrentLoverPage] = useState(1);
+    const [currentPaymentPage, setCurrentPaymentPage] = useState(1);
+
     const [ModeratorPerPage] = useState(20);
 
     const [UserPerPage] = useState(20);
     const [currentUserPage] = useState(1);
 
     const [LoverPerPage] = useState(20);
-    const [currentLoverPage] = useState(1);
 
     const [PaymentPerPage] = useState(20);
-    const [currentPaymentPage] = useState(1);
 
     const [formState, setFormState] = useState({
         name: '',
@@ -261,9 +262,9 @@ const Admin = () => {
     const indexOfFirstLover = indexOfLastLover - LoverPerPage;
     const currentLovers = lovers.slice(indexOfFirstLover, indexOfLastLover);
 
-    const paginateLover = pageNumber => setCurrentPage(pageNumber);
-    const nextPageLover = () => setCurrentPage(currentPage + 1);
-    const prevPageLover = () => setCurrentPage(currentPage - 1);
+    const paginateLover = pageNumber => setCurrentLoverPage(pageNumber);
+    const nextPageLover = () => setCurrentLoverPage(currentPage + 1);
+    const prevPageLover = () => setCurrentLoverPage(currentPage - 1);
 
     const pageNumbersLover = [];
     for (let i = 1; i <= Math.ceil(lovers.length / LoverPerPage); i++) {
@@ -275,12 +276,12 @@ const Admin = () => {
     const indexOfFirstPayment = indexOfLastPayment - PaymentPerPage;
     const currentPayments = payments.slice(indexOfFirstPayment, indexOfLastPayment);
 
-    const paginatePayment = pageNumber => setCurrentPage(pageNumber);
-    const nextPagePayment = () => setCurrentPage(currentPage + 1);
-    const prevPagePayment = () => setCurrentPage(currentPage - 1);
+    const paginatePayment = pageNumber => setCurrentPaymentPage(pageNumber);
+    const nextPagePayment = () => setCurrentPaymentPage(currentPage + 1);
+    const prevPagePayment = () => setCurrentPaymentPage(currentPage - 1);
 
     const pageNumbersPayment = [];
-    for (let i = 1; i <= Math.ceil(lovers.length / PaymentPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(payments.length / PaymentPerPage); i++) {
         pageNumbersPayment.push(i);
     }
 
@@ -593,7 +594,7 @@ const Admin = () => {
                                                             <td>{payment.user}</td>
                                                             <td>{payment.amount}</td>
                                                             <td>{payment.description}</td>
-                                                            <td>{moment(payment.date).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                                                            <td>{moment(payment.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
                                                         </tr>
                                                         )}
                                                     </tbody>
